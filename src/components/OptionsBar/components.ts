@@ -23,4 +23,8 @@ export const Button = styled.button`
 	:hover {
 		background-color: #f2f2f2;
 	}
+
+	:active {
+		background-color: #e2e2e2;
+	}
 `;

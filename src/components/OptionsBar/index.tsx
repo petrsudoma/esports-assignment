@@ -1,11 +1,12 @@
 import { FormEvent, useState } from 'react';
 
 import { Button, Form, InputLabel } from './components';
-import { Team } from '../../types';
+import { Player } from '../../types';
 import { fetchData } from '../../utils/fetchData';
 
 type OptionsBarProps = {
-	liftData: (data: Team[]) => void;
+	liftData: (data: Player[]) => void;
+	setLoading: (value: boolean) => void;
 };
 const OptionsBar: React.FC<OptionsBarProps> = function (props) {
 	const [playersMetrics, setPlayersMetrics] = useState<string[]>([]);
@@ -14,7 +15,7 @@ const OptionsBar: React.FC<OptionsBarProps> = function (props) {
 		if (playersMetrics.length === 0) {
 			alert('Please choose at least one metric!');
 		} else {
-			fetchData(playersMetrics, props.liftData);
+			fetchData(playersMetrics, props.liftData, props.setLoading);
 		}
 		e.preventDefault();
 	}

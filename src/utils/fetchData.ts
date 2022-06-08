@@ -1,19 +1,34 @@
 import Axios from 'axios';
 
-import { Team } from '../types';
+import { Player } from '../types';
 
-export function fetchData(playersMetrics: string[], giveData: (data: Team[]) => void) {
+export function fetchData(
+	playersMetrics: string[],
+	giveData: (data: Player[]) => void,
+	setLoading: (value: boolean) => void
+) {
+	setLoading(true);
 	Axios.post(
-		'http://logiq.statistics.datasport.cz/api/v1/individual/9db52d7c-a449-4acd-a8ac-aad705b60c6e',
+		process.env.REACT_APP_COMPETITION_URL as string,
 		{
 			gameState: '5:5',
 			timeOnIce: 600,
 			metrics: playersMetrics,
 		},
-		{ headers: { Authorization: 'Bearer 7ce0595b80a50950f3887cbec3fe6de5e4cf41c8' } }
+		{ headers: { Authorization: 'Bearer ' + localStorage.access_token } }
 	)
 		.then((res) => {
-			giveData(res.data);
+			const players = [];
+			for (let team of res.data) {
+				for (let player of team.players) {
+					players.push({
+						team: team.team,
+						...player,
+					});
+				}
+			}
+			giveData(players);
 		})
-		.catch((err) => console.error(err));
+		.catch((err) => console.error(err))
+		.finally(() => setLoading(false));
 }

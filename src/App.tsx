@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Table from './components/Table';
+import { getAccessToken } from './utils/getToken';
 
 function App() {
+	useEffect(() => {
+		getAccessToken();
+	}, []);
+
 	return (
 		<Wrapper>
 			<Table />
