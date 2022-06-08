@@ -32,7 +32,6 @@ function Table() {
 	function getTime(originalTime: number) {
 		const minutes = Math.floor(originalTime / 60);
 		const seconds = originalTime - minutes * 60;
-		console.log(minutes + ':' + seconds);
 		return minutes + ':' + seconds;
 	}
 
