@@ -4,6 +4,7 @@ export const TableComponent = styled.table`
 	border: 1px solid #696969;
 	text-align: center;
 	width: 100%;
+	min-width: 380px;
 `;
 
 export const Row = styled.tr``;

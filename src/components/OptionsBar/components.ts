@@ -12,6 +12,11 @@ export const Form = styled.form`
 export const InputLabel = styled.label`
 	margin-left: 10px;
 	margin-right: 50px;
+
+	@media only screen and (max-width: 550px) {
+		margin-right: 10px;
+		font-size: 0.7em;
+	}
 `;
 
 export const Button = styled.button`
@@ -19,6 +24,7 @@ export const Button = styled.button`
 	border: 1px solid #000;
 	padding: 10px 30px;
 	cursor: pointer;
+	color: #000;
 
 	:hover {
 		background-color: #f2f2f2;
@@ -26,5 +32,12 @@ export const Button = styled.button`
 
 	:active {
 		background-color: #e2e2e2;
+	}
+
+	@media only screen and (max-width: 550px) {
+		font-size: 0.6em;
+		width: 70px;
+		height: 30px;
+		padding: 0;
 	}
 `;
